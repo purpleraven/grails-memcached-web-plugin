@@ -60,8 +60,6 @@ dependencies {
         exclude group:"org.slf4j", module:"slf4j-api"
         exclude group:"org.springframework", module:"spring-beans"
     }
-
-//    runtime ":webxml:1.4.1" todo
 }
 
 task wrapper(type: Wrapper) {
@@ -86,9 +84,6 @@ publishing {
                 }
             }
             from components.java
-//            artifact (sourceJar) { // (2)
-//                classifier = 'sources'
-//            }
         }
     }
 }
@@ -97,9 +92,8 @@ publishing {
 
 
 grailsPublish {
-    user = 'user'
-    key = 'key'
-    websiteUrl = "33cows.com"
+    user = ''
+    key = ''
     githubSlug = 'purpleraven/grails-memcached-web-plugin'
 
     license {
