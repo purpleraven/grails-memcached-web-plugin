@@ -39,10 +39,7 @@ or
 
 `<mc:memcachedLog/>` shows caching time if memcached activated fror the page
 
-![configuration](https://github.com/purpleraven/grails-memcached-web-plugin/raw/master/pics/list.png)
-![content](https://github.com/purpleraven/grails-memcached-web-plugin/raw/master/pics/keys.png)
-   
-      
+
 Installation
 ------------
 
@@ -55,7 +52,7 @@ repositories {
 }
 dependencies {
 ...
-    compile 'org.grails.plugins:grails-memcached-web-plugin:1.1'
+    compile 'org.grails.plugins:grails-memcached-web-plugin:1.2'
 ...
 }
 ```
