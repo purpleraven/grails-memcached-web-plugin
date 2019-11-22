@@ -5,6 +5,7 @@ import grails.plugins.*
 import net.spy.memcached.AddrUtil
 import net.spy.memcached.MemcachedClient
 import net.spy.memcached.transcoders.SerializingTranscoder
+import org.springframework.boot.web.servlet.FilterRegistrationBean
 
 class MemcachedWebGrailsPlugin extends Plugin {
 
@@ -55,18 +56,23 @@ Brief summary/description of the plugin.
                 return
             }
             log.warn("Starting memcached client ${application.config.memcached.servers}")
-            memcachedClient(MemcachedClient, AddrUtil.getAddresses(grailsApplication.config.memcached.servers)) {}
+            memcachedClient(MemcachedClient, AddrUtil.getAddresses(grailsApplication.config.memcached.servers))
             memcachedPackedClientTranscoder(SerializingTranscoder) {
-                compressionThreshold = 250//20 * 1024 * 1024
+                compressionThreshold = 1024 //1k
             }
 
             memcachedClientTranscoder(SerializingTranscoder) {
                 compressionThreshold = 20 * 1024 * 1024 //20M
             }
 
-            /*memcachedFilter(MemcachedFilter) {
-                memcachedService = ref("memcachedService")
-            } todo*/
+            log.error("Adding memcachedFilter")
+
+            memcachedFilter(FilterRegistrationBean) {
+                filter = bean(MemcachedFilter){
+                    memcachedService = ref('memcachedService')
+                }
+                order = FilterRegistrationBean.REQUEST_WRAPPER_FILTER_MAX_ORDER + 1
+            }
         }
     }}
 

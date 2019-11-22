@@ -38,7 +38,7 @@ class MemcachedMarkerInterceptor {
         Integer val = valuesCache.get(key)
 
         if (val!=null && val != 0){
-            CacheHelper.setMemcachedAnnotation(request, val)
+            MemcachedHelper.mark(request, val)
         }
 
         true

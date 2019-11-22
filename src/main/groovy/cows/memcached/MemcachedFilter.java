@@ -84,7 +84,7 @@ public class MemcachedFilter extends OncePerRequestFilter {
             // Page is not cached - build the response, cache it, and
             // send to client
             pageInfo = buildPage(request, response, chain);
-            Integer seconds = CacheHelper.getAnnotation(request);
+            Integer seconds = MemcachedHelper.isMarked(request);
             if (pageInfo.isOk() && seconds!=null) {
 //        LOG.debug("PageInfo ok. Adding to cache  with key " + url);
                 byte[] body = pageInfo.getUngzippedBody();

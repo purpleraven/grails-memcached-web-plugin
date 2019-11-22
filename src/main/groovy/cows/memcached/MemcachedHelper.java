@@ -8,17 +8,18 @@ import javax.servlet.ServletRequest;
  * Date: 13.04.11
  * Time: 18:45
  */
-public class CacheHelper {
+public class MemcachedHelper {
     public static final String MEMCACHED = "X-Memcached-Cached";
-    public static Integer getAnnotation(ServletRequest request){
+
+    public static Integer isMarked(ServletRequest request){
         return (Integer) request.getAttribute(MEMCACHED);
     }
 
-    public static void setMemcachedAnnotation(ServletRequest request, Integer seconds){
+    public static void mark(ServletRequest request, Integer seconds){
         request.setAttribute(MEMCACHED, seconds);
     }
 
-    public static void removeAnnotation(ServletRequest request){
+    public static void unmark(ServletRequest request){
         request.removeAttribute(MEMCACHED);
     }
 
