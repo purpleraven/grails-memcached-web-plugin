@@ -44,17 +44,17 @@ public class MemcachedFilter extends OncePerRequestFilter {
         String url=null;
         try {
             if (request.getHeader("X-No-Cache")==null && !request.getRequestURI().contains("/static/")) { // todo fix static
-                if (response.isCommitted()) {
-                    logger.warn("MemcachedFilter error: Response already committed before doing buildPage");
-                    return;
-                }
-
-
                 url = request.getRequestURI()+'?';
                 String query = request.getQueryString();
                 if (query!=null && !query.isEmpty()){
                     url +=query;
                 }
+
+                if (response.isCommitted()) {
+                    logger.warn("MemcachedFilter error: Response already committed before doing buildPage. Status:"+ response.getStatus()+", url:"+url);
+                    return;
+                }
+
                 PageInfo pageInfo = buildPageInfo(url,request, response, chain);
                 if (response.isCommitted()) {
                     if (pageInfo.isOk()){
