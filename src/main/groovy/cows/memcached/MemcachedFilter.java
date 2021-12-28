@@ -88,7 +88,7 @@ public class MemcachedFilter extends OncePerRequestFilter {
             if (pageInfo.isOk() && seconds!=null) {
 //        LOG.debug("PageInfo ok. Adding to cache  with key " + url);
                 byte[] body = pageInfo.getUngzippedBody();
-                if (body!=null && body.length > 60) {
+                if (body!=null && body.length > 500) {
                     boolean gzip = false;
                     if (seconds<0){
                         gzip = true;

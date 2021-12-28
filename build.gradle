@@ -11,7 +11,7 @@ buildscript {
   }
 }
 
-version "1.2.1"
+version "1.2.2"
 group "org.grails.plugins"
 
 apply plugin:"idea"
@@ -50,7 +50,7 @@ dependencies {
   profile "org.grails.profiles:web-plugin:3.1.6"
   provided "org.grails:grails-plugin-services"
   provided "org.grails:grails-plugin-domain-class"
-  runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.8.2"
+//  runtime "com.bertramlabs.plugins:asset-pipeline-grails:2.8.2"
   testCompile "org.grails:grails-plugin-testing"
   testCompile "org.grails.plugins:geb"
   testRuntime "org.seleniumhq.selenium:selenium-htmlunit-driver:2.47.1"
@@ -87,6 +87,13 @@ publishing {
 //            artifact (sourceJar) { // (2)
 //                classifier = 'sources'
 //            }
+    }
+  }
+  repositories {
+    maven {
+      credentials {
+        // todo
+      }
     }
   }
 }
