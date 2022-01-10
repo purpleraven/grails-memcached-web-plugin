@@ -2,8 +2,11 @@ package cows.memcached
 
 import net.spy.memcached.transcoders.Transcoder
 import net.spy.memcached.MemcachedClient
+import org.apache.commons.logging.Log
+import org.apache.commons.logging.LogFactory
 
 class MemcachedService {
+  private static final Log LOG = LogFactory.getLog(MemcachedService)
 
   static transactional = false
   MemcachedClient memcachedClient
@@ -23,7 +26,7 @@ class MemcachedService {
         memcachedClient.add(key, exp, content, transcoder)
       }
     } catch (all){
-      log.error("memcached: adding ($key)", all)
+      LOG.error("memcached: adding ($key)", all)
     }
   }
 
@@ -33,7 +36,7 @@ class MemcachedService {
         memcachedClient.delete(key)
       }
     } catch (all) {
-      log.error("memcached: removing ", all)
+      LOG.error("memcached: removing ", all)
     }
 
   }
