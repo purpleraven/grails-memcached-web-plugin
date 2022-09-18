@@ -6,6 +6,7 @@ import net.spy.memcached.AddrUtil
 import net.spy.memcached.MemcachedClient
 import net.spy.memcached.transcoders.SerializingTranscoder
 import org.springframework.boot.web.servlet.FilterRegistrationBean
+//import org.springframework.boot.web.servlet.filter.OrderedFilter
 
 class MemcachedWebGrailsPlugin extends Plugin {
 
@@ -71,7 +72,7 @@ Brief summary/description of the plugin.
                 filter = bean(MemcachedFilter){
                     memcachedService = ref('memcachedService')
                 }
-                order = FilterRegistrationBean.REQUEST_WRAPPER_FILTER_MAX_ORDER + 1
+                order = /*FilterRegistrationBean.REQUEST_WRAPPER_FILTER_MAX_ORDER*/ 0 + 1
             }
         }
     }}
